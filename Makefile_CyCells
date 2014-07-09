@@ -1,0 +1,168 @@
+CC            = gcc
+CXX           = g++
+DEFINES       = -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_SHARED
+CXXFLAGS      = -pipe -O2 -Wall -W -D_REENTRANT $(DEFINES)
+INCPATH       = -I/usr/share/qt4/mkspecs/linux-g++ -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4 -I. -I/usr/X11R6/include -I. -I.
+
+SOURCES = action.cpp \
+		cells.cpp \
+		cellType.cpp \
+		fileDef.cpp \
+		fileInit.cpp \
+		history.cpp \
+		main.cpp \
+		molecule.cpp \
+		random.cpp \
+		sense.cpp \
+		tallyActions.cpp \
+		tissue.cpp 
+OBJECTS = action.o \
+		cells.o \
+		cellType.o \
+		fileDef.o \
+		fileInit.o \
+		history.o \
+		molecule.o \
+		random.o \
+		sense.o \
+		tallyActions.o \
+		tissue.o 
+
+CyCells: CyCells.o $(OBJECTS)
+	g++ CyCells.o $(OBJECTS) -o CyCells
+
+CyCells.o: CyCells.cpp\
+    tissue.h \
+		cells.h \
+		cell.h \
+		simPoint.h \
+		array3D.h \
+		cellType.h \
+		molecule.h \
+		history.h \
+		fileDef.h \
+		fileInit.h
+	$(CXX) -c CyCells.cpp 
+
+action.o: action.cpp action.h \
+		cells.h \
+		cell.h \
+		simPoint.h \
+		array3D.h \
+		molecule.h \
+		random.h \
+		tallyActions.h \
+		rate.h
+	$(CXX) -c $(CXXFLAGS) -o action.o action.cpp
+
+cells.o: cells.cpp cells.h \
+		cell.h \
+		simPoint.h \
+		array3D.h \
+		cellType.h \
+		random.h \
+		util.h
+	$(CXX) -c $(CXXFLAGS) -o cells.o cells.cpp
+
+cellType.o: cellType.cpp cellType.h \
+		cell.h \
+		simPoint.h \
+		sense.h \
+		process.h \
+		rate.h \
+		condition.h \
+		random.h \
+		util.h \
+		tallyActions.h \
+		action.h
+	$(CXX) -c $(CXXFLAGS) -o cellType.o cellType.cpp
+
+dataDialog.o: dataDialog.cpp dataDialog.h \
+		ui_DataDialog.h \
+		tissue.h \
+		cells.h \
+		cell.h \
+		simPoint.h \
+		array3D.h \
+		cellType.h \
+		molecule.h \
+		history.h
+	$(CXX) -c $(CXXFLAGS) -o dataDialog.o dataDialog.cpp
+
+fileDef.o: fileDef.cpp fileDef.h \
+		tissue.h \
+		cells.h \
+		cell.h \
+		simPoint.h \
+		array3D.h \
+		cellType.h \
+		molecule.h \
+		sense.h \
+		rate.h \
+		condition.h \
+		random.h \
+		action.h \
+		process.h \
+		util.h \
+		tallyActions.h
+	$(CXX) -c $(CXXFLAGS) -o fileDef.o fileDef.cpp
+
+fileInit.o: fileInit.cpp fileInit.h \
+		tissue.h \
+		cells.h \
+		cell.h \
+		simPoint.h \
+		array3D.h \
+		cellType.h \
+		molecule.h \
+		random.h \
+		util.h
+	$(CXX) -c $(CXXFLAGS) -o fileInit.o fileInit.cpp
+
+history.o: history.cpp history.h \
+		tissue.h \
+		cells.h \
+		cell.h \
+		simPoint.h \
+		array3D.h \
+		cellType.h \
+		molecule.h \
+		util.h
+	$(CXX) -c $(CXXFLAGS) -o history.o history.cpp
+
+main.o: main.cpp QtCyCells.h \
+		QtEngineThread.h \
+		ui_QtCyCells.h
+	$(CXX) -c $(CXXFLAGS) -o main.o main.cpp
+
+molecule.o: molecule.cpp molecule.h \
+		array3D.h \
+		simPoint.h \
+		random.h
+	$(CXX) -c $(CXXFLAGS) -o molecule.o molecule.cpp
+
+random.o: random.cpp random.h
+	$(CXX) -c $(CXXFLAGS) -o random.o random.cpp
+
+sense.o: sense.cpp sense.h \
+		cell.h \
+		simPoint.h \
+		cells.h \
+		array3D.h \
+		molecule.h \
+		random.h
+	$(CXX) -c $(CXXFLAGS) -o sense.o sense.cpp
+
+tallyActions.o: tallyActions.cpp tallyActions.h
+	$(CXX) -c $(CXXFLAGS) -o tallyActions.o tallyActions.cpp
+
+tissue.o: tissue.cpp tissue.h \
+		cells.h \
+		cell.h \
+		simPoint.h \
+		array3D.h \
+		cellType.h \
+		molecule.h \
+		random.h \
+		util.h
+	$(CXX) $(CXXFLAGS) tissue.cpp
