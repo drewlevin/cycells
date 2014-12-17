@@ -30,3 +30,9 @@ CyCells was created by Christina Warrender and is maintained by Drew Levin.
 CyCells is licensed by the GNU Public License v3.0
 
 http://www.gnu.org/copyleft/gpl.html
+
+## Citation
+
+Please Cite CyCells if you use it in an academic capacity:
+
+https://zenodo.org/badge/doi/10.5281/zenodo.13296.svg
