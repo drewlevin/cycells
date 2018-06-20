@@ -165,4 +165,4 @@ tissue.o: tissue.cpp tissue.h \
 		molecule.h \
 		random.h \
 		util.h
-	$(CXX) $(CXXFLAGS) tissue.cpp
+	$(CXX) -c $(CXXFLAGS) tissue.cpp
